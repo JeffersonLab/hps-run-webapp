@@ -1,0 +1,9 @@
+<div class="header">
+    <span><a href="runs">HPS Run Database</a></span>
+    <div class="search">
+        <form action="run" method="GET">
+            <input type="submit" value="Search"/>
+            <input type="text" name="run"/>
+        </form>
+    </div>
+</div>

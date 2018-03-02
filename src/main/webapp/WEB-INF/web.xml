@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <display-name>HPS Run Web Application</display-name>
+
+    <description>
+       Web interface to the HPS Run Database 
+    </description>
+       
+    <resource-ref>
+        <description>Run Database Connection</description>
+        <res-ref-name>jdbc/hps_run_db_v2</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <context-param>
+        <param-name>datacat</param-name>
+        <param-value>http://hpsweb.jlab.org/datacat</param-value>
+    </context-param>
+
+<!--     
+    <context-param>
+        <param-name>datacat</param-name>
+        <param-value>http://ppa-jeremym-l.slac.stanford.edu:8080/datacat-v0.5-SNAPSHOT</param-value>
+    </context-param>
+-->
+
+    <context-param>
+        <param-name>dataquality</param-name>
+        <param-value>http://hpsweb.jlab.org/data-quality</param-value>
+    </context-param>
+
+<!--    
+    <context-param>
+        <param-name>dqm</param-name>
+        <param-value>http://ppa-jeremym-l.slac.stanford.edu:8080/data-quality</param-value>
+    </context-param>
+-->
+
+    <!-- Display full run table. -->                
+    <servlet>
+        <servlet-name>RunTableServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.RunTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RunTableServlet</servlet-name>
+        <url-pattern>/runs</url-pattern>
+    </servlet-mapping>
+        
+    <!-- Display the main run page. -->        
+    <servlet>
+        <servlet-name>RunMainServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.RunMainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RunMainServlet</servlet-name>
+        <url-pattern>/run</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Display run summary side bar. -->
+    <servlet>
+        <servlet-name>RunSummaryServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.RunSummaryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RunSummaryServlet</servlet-name>
+        <url-pattern>/runSummary</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Display EPICS data -->    
+    <servlet>
+        <servlet-name>EpicsDataServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.EpicsDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EpicsDataServlet</servlet-name>
+        <url-pattern>/epics</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Display scaler data -->        
+    <servlet>
+        <servlet-name>ScalerDataServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.ScalerDataServlet</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>ScalerDataServlet</servlet-name>
+        <url-pattern>/scalers</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Display dataset list -->    
+    <servlet>
+        <servlet-name>DatasetServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.DatasetServlet</servlet-class>
+    </servlet>       
+    <servlet-mapping>
+        <servlet-name>DatasetServlet</servlet-name>
+        <url-pattern>/datasets</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Display trigger config -->
+    <servlet>
+        <servlet-name>TriggerConfigServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.TriggerConfigServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TriggerConfigServlet</servlet-name>
+        <url-pattern>/triggerconfig</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Download text files -->
+    <servlet>
+        <servlet-name>TextDownloadServlet</servlet-name>
+        <servlet-class>org.hps.webapps.run.TextDownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TextDownloadServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>runs</welcome-file>
+    </welcome-file-list>
+                   
+</web-app>     
